@@ -10,52 +10,118 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.stream.Stream;
 
 /**
  * Nombres: Miguel Angel Cervantes Garcia
  *          Juan Antonio Ovalle Patiño
  * Num Boletas: 2017670201
  *            2017670891
- * Fecha de Entrega: 30 / Enero/ 2019
- * Evidencia: Lectrura de caracter por caracter
+ * Fecha de Entrega: 1)30 / Enero / 2019
+ *                   2)6 / Febrero / 2019
+ * Evidencia: 1)Lectrura de caracter por caracter
+ *            2)Forma variables y nuemros con punto decimal
  * Nombre de la maestra: Karina Rodriguez Mejia
  * Programa Academico: Ingenieria en Sistemas Computacionales
  * Unidad de Aprendizaje: Compiladores
  * @author ovall
  */
+
 public class leer {
-    int i = 0;
-    String msj = "";
+    
+    private int i = 0;
+    private String msj = "";
+    
     public leer(){
+        String cadena;
         File archivo = new File("C:/Users/ovall/OneDrive/Documents/jsjs.txt");
         FileReader fr;
-        Stream lineas;
         try{
             fr = new FileReader(archivo);
             BufferedReader br = new BufferedReader(fr);
-            
-            String lines = "";
-            while( ( lines = br.readLine()) != null)
-                msj+=lines;
+            //Guarda en un arreglo lo que hay en cada linea del archivo
+            ArrayList<String> lineas = new ArrayList<>();
+            while( (cadena = br.readLine()) != null)
+                lineas.add(cadena);
+            //Pone lo que hay en el arreglo en un string
+            for(String linea: lineas)
+                msj +=linea +"\n";
         } catch (FileNotFoundException ex) {
             Logger.getLogger(leer.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(leer.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
     public char caracter() {
-        return msj.charAt(i++);
+        try {
+            return msj.charAt(i++);
+        } catch (Exception e) {
+            return ' ';
+        }
+    }
+    
+    public String formarVariable(){
+        //([a-z] | [A-Z]) ([a-z] | [A-Z] | [0-9])* 
+        char x =  caracter();
+        if((x > 64 && x < 91) || (x > 96 && x <123))
+            //El caracter es una letra
+            return formarCadena(x);
+        else if((x > 47 && x < 58))
+            //El caracter es un numero
+            return formarNumero(x);
+        else
+            return ""+x;
+    }
+    
+    public String formarCadena(char x){
+        String cadena = ""+x;
+        int z = x;
+        while((z>64 && z<91) || (z>96 && z<123) || (z>47 && z<58)){
+            x = caracter();
+            z = x;
+            if((z>64 && z<91) || (z>96 && z<123) || (z>47 && z<58))
+                cadena+= ""+x;
+            else{
+                i--;
+                return cadena;
+            }
+        }
+        return cadena;
+    }
+    
+    public String formarNumero(char x){
+        String nuemro = ""+x;
+        int z = x, punto = 0;
+        while( (punto < 2) || (z > 47 && z < 58) ){
+            x = caracter();
+            z = x;
+            if(x == '.' && punto == 0){
+                punto++;
+                nuemro+= ""+x;
+            }
+            else if(x == '.' && punto != 0)
+                return nuemro;
+            else if(z > 47 && z < 58)
+                nuemro+= ""+x;
+            else
+                return nuemro;
+        }
+        return nuemro;
     }
     
     public static void main(String[] args) {
         
-        leer j = new leer();
-        for(int i=0; i<22;i++)
-        System.out.println(j.caracter());
-        
+        leer l = new leer();
+        /*for(int i=0; i<8;i++)
+            System.out.println(l.caracter());*/
+        System.out.println(l.formarVariable());
+        System.out.println(l.formarVariable());
+        System.out.println(l.formarVariable());
+        System.out.println(l.formarVariable());
+        System.out.println(l.formarVariable());
     }
     
 }
