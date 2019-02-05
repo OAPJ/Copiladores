@@ -36,18 +36,15 @@ public class leer {
     
     public leer(){
         String cadena;
-        File archivo = new File("C:/Users/ovall/OneDrive/Documents/jsjs.txt");
+        File archivo = new File("jsjs.txt");
         FileReader fr;
         try{
             fr = new FileReader(archivo);
             BufferedReader br = new BufferedReader(fr);
             //Guarda en un arreglo lo que hay en cada linea del archivo
-            ArrayList<String> lineas = new ArrayList<>();
             while( (cadena = br.readLine()) != null)
-                lineas.add(cadena);
-            //Pone lo que hay en el arreglo en un string
-            for(String linea: lineas)
-                msj +=linea +"\n";
+                msj += cadena+"\n"; 
+            br.close();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(leer.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -117,6 +114,7 @@ public class leer {
         leer l = new leer();
         /*for(int i=0; i<8;i++)
             System.out.println(l.caracter());*/
+        System.out.println(l.formarVariable());
         System.out.println(l.formarVariable());
         System.out.println(l.formarVariable());
         System.out.println(l.formarVariable());
