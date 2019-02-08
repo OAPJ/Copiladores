@@ -10,7 +10,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -31,8 +30,8 @@ import java.util.logging.Logger;
 
 public class leer {
     
-    private int i = 0;
-    private String msj = "";
+    public int i = 0;
+    public String msj = "";
     
     public leer(){
         String cadena;
@@ -103,8 +102,15 @@ public class leer {
                 return nuemro;
             else if(z > 47 && z < 58)
                 nuemro+= ""+x;
-            else
-                return nuemro;
+            else{
+                String[] n = nuemro.split("\\.");
+                if(n.length == 1){
+                    i=i-2;
+                    return n[0];
+                }
+                else
+                    return nuemro;
+            }
         }
         return nuemro;
     }
@@ -114,6 +120,7 @@ public class leer {
         leer l = new leer();
         /*for(int i=0; i<8;i++)
             System.out.println(l.caracter());*/
+        System.out.println(l.formarVariable());
         System.out.println(l.formarVariable());
         System.out.println(l.formarVariable());
         System.out.println(l.formarVariable());
