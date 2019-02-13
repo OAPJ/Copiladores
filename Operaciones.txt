@@ -1,0 +1,18 @@
++ Suma
+++ Sumar 1
+- Resta
+-- Restar 1
+x Multiplicacion
+/ Divicion
+mod 
+OR
+AND
+>
+<
+=>
+<=
+=
+=== igual igual
+^ potencia
+\= diferente
+\ negacion 
