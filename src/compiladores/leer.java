@@ -32,8 +32,10 @@ public class leer {
     
     public int i = 0;
     public String msj = "";
+    public ExpresionesRegulares er;
     
     public leer(){
+        er = new ExpresionesRegulares();
         String cadena;
         File archivo = new File("jsjs.txt");
         FileReader fr;
@@ -68,8 +70,11 @@ public class leer {
         else if((x > 47 && x < 58))
             //El caracter es un numero
             return formarNumero(x);
-        else
+        else if(x == ' '){
             return ""+x;
+        }
+        else
+            return x+" "+ er.exRegular(""+x);
     }
     
     public String formarCadena(char x){
