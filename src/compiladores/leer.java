@@ -44,12 +44,13 @@ public class leer {
             BufferedReader br = new BufferedReader(fr);
             //Guarda en un arreglo lo que hay en cada linea del archivo
             while( (cadena = br.readLine()) != null)
-                msj += cadena+"\n"; 
+                msj += cadena+"\n";
+            msj = msj.substring(0, msj.length()-1);
             br.close();
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(leer.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         } catch (IOException ex) {
-            Logger.getLogger(leer.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
     }
     
@@ -64,15 +65,16 @@ public class leer {
     public String formarVariable(){
         //([a-z] | [A-Z]) ([a-z] | [A-Z] | [0-9])* 
         char x =  caracter();
+        if(x == '\n')
+            x = caracter();
         if((x > 64 && x < 91) || (x > 96 && x <123))
             //El caracter es una letra
             return formarCadena(x);
         else if((x > 47 && x < 58))
             //El caracter es un numero
             return formarNumero(x);
-        else if(x == ' '){
-            return ""+x;
-        }
+        else if(x == ' ')
+            return "";
         else
             return x+" "+ er.exRegular(""+x);
     }
@@ -94,30 +96,31 @@ public class leer {
     }
     
     public String formarNumero(char x){
-        String nuemro = ""+x;
+        String numero = ""+x;
         int z = x, punto = 0;
-        while( (punto < 2) || (z > 47 && z < 58) ){
+        while( (punto < 2) || (z > 47 && z < 58)  ){
             x = caracter();
             z = x;
             if(x == '.' && punto == 0){
                 punto++;
-                nuemro+= ""+x;
+                numero+= ""+x;
             }
             else if(x == '.' && punto != 0)
-                return nuemro;
-            else if(z > 47 && z < 58)
-                nuemro+= ""+x;
+                return er.validarNumero(numero);
+            else if((z > 47 && z < 58) || (z>64 && z<91) || (z>96 && z<123))
+                numero+= ""+x;
             else{
-                String[] n = nuemro.split("\\.");
-                if(n.length == 1){
-                    i=i-2;
-                    return n[0];
+                if(numero.contains(".")){
+                    String[] n = numero.split("\\.");
+                    if(n.length == 1){
+                        i=i-2;
+                        return er.validarNumero(n[0]);
+                    }
                 }
-                else
-                    return nuemro;
+                return er.validarNumero(numero);
             }
         }
-        return nuemro;
+        return numero;
     }
     
     public static void main(String[] args) {
@@ -129,9 +132,9 @@ public class leer {
         System.out.println(l.formarVariable());
         System.out.println(l.formarVariable());
         System.out.println(l.formarVariable());
-        System.out.println(l.formarVariable());
-        System.out.println(l.formarVariable());
-        System.out.println(l.formarVariable());
+//        System.out.println(l.formarVariable());
+//        System.out.println(l.formarVariable());
+//        System.out.println(l.formarVariable());
     }
     
 }

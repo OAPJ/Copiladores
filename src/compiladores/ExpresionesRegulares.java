@@ -60,12 +60,21 @@ public class ExpresionesRegulares {
         if(variablesDefinidas.contains(er))
             return er;
         else
-            return "Error";
+            return "1 Error";
+    }
+    
+    public String validarNumero(String er){
+        try {
+            double e = Double.parseDouble(er);
+            return er;
+        } catch (Exception e) {
+            return "2 Error ";
+        }
     }
     
     public static void main(String[] args) {
         ExpresionesRegulares e = new ExpresionesRegulares();
-        System.out.println(e.exRegular("else"));
-        System.out.println(e.exRegular("A1"));
+        System.out.println(e.validarNumero("4."));
+        
     }
 }
