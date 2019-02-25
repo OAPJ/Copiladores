@@ -10,8 +10,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Nombres: Miguel Angel Cervantes Garcia
@@ -20,8 +18,10 @@ import java.util.logging.Logger;
  *            2017670891
  * Fecha de Entrega: 1)30 / Enero / 2019
  *                   2)6 / Febrero / 2019
+ *                   4)25 / Febrero / 2019 
  * Evidencia: 1)Lectrura de caracter por caracter
  *            2)Forma variables y nuemros con punto decimal
+ *            4)Velidacion de cadenas, simbolos y numeros
  * Nombre de la maestra: Karina Rodriguez Mejia
  * Programa Academico: Ingenieria en Sistemas Computacionales
  * Unidad de Aprendizaje: Compiladores

@@ -12,8 +12,10 @@ import java.util.ArrayList;
  *          Juan Antonio Ovalle Patiño
  * Num Boletas: 2017670201
  *              2017670891
- * Fecha de Entrega: 
+ * Fecha de Entrega: 3)13 / Febrero / 2019 
+ *                   4)25 / Febrero / 2019 
  * Evidencia: 3) Expresiones Regulares
+ *            4)Velidacion de cadenas, simbolos y numeros
  * Nombre de la maestra: Karina Rodriguez Mejia
  * Programa Academico: Ingenieria en Sistemas Computacionales
  * Unidad de Aprendizaje: Compiladores
