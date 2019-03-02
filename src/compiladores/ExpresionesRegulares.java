@@ -43,8 +43,8 @@ public class ExpresionesRegulares {
         variablesDefinidas.add("=>");
         variablesDefinidas.add("<");
         variablesDefinidas.add("<=");
-        variablesDefinidas.add("\\"); //Preguntar
-        variablesDefinidas.add("\\=");//Preguntar
+        variablesDefinidas.add("¡");
+        variablesDefinidas.add("¡=");
         variablesDefinidas.add("AND");
         variablesDefinidas.add("OR");
         variablesDefinidas.add("++");
@@ -56,6 +56,8 @@ public class ExpresionesRegulares {
         variablesDefinidas.add("else");
         variablesDefinidas.add("(");
         variablesDefinidas.add(")");
+        variablesDefinidas.add(",");
+        variablesDefinidas.add("return");
     }
     
     public String exRegular(String er){
