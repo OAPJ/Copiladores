@@ -75,6 +75,10 @@ public class ExpresionesRegulares {
             return "2 Error ";
         }
     }
+
+    public ArrayList<String> getVariablesDefinidas() {
+        return variablesDefinidas;
+    }
     
     public static void main(String[] args) {
         ExpresionesRegulares e = new ExpresionesRegulares();

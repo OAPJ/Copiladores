@@ -30,7 +30,7 @@ import java.io.IOException;
 
 public class leer {
     
-    public int i = 0;
+    private int i = 0;
     public String msj = "";
     public ExpresionesRegulares er;
     
@@ -121,6 +121,20 @@ public class leer {
             }
         }
         return numero;
+    }
+    
+    /**
+     * @return the i
+     */
+    public int getI() {
+        return i;
+    }
+
+    /**
+     * @param i the i to set
+     */
+    public void setI(int i) {
+        this.i = i;
     }
     
     public static void main(String[] args) {
