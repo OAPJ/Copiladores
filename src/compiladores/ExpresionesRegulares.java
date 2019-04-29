@@ -22,46 +22,47 @@ import java.util.ArrayList;
  * @author ovall
  */
 public class ExpresionesRegulares {
-    private ArrayList<String> variablesDefinidas;
+    private ArrayList<String> vf;
     
     public ExpresionesRegulares(){
-        variablesDefinidas = new ArrayList<>();
-        variablesDefinidas.add("weaS");
-        variablesDefinidas.add("wea");
-        variablesDefinidas.add("weaN");
-        variablesDefinidas.add("weaD");
-        variablesDefinidas.add("weaBo");
-        variablesDefinidas.add("+");
-        variablesDefinidas.add("-");
-        variablesDefinidas.add("*");
-        variablesDefinidas.add("/");
-        variablesDefinidas.add("^");
-        variablesDefinidas.add("mod");
-        variablesDefinidas.add("=");
-        variablesDefinidas.add("===");
-        variablesDefinidas.add(">");
-        variablesDefinidas.add("=>");
-        variablesDefinidas.add("<");
-        variablesDefinidas.add("<=");
-        variablesDefinidas.add("¡");
-        variablesDefinidas.add("¡=");
-        variablesDefinidas.add("AND");
-        variablesDefinidas.add("OR");
-        variablesDefinidas.add("++");
-        variablesDefinidas.add("--");
-        variablesDefinidas.add("while");
-        variablesDefinidas.add("end");
-        variablesDefinidas.add("if");
-        variablesDefinidas.add("elsif");
-        variablesDefinidas.add("else");
-        variablesDefinidas.add("(");
-        variablesDefinidas.add(")");
-        variablesDefinidas.add(",");
-        variablesDefinidas.add("return");
+        vf = new ArrayList<>();
+        vf.add("end");   //0
+        vf.add("while"); //1
+        vf.add("if");    //2
+        vf.add("elsif"); //3
+        vf.add("else");  //4
+        vf.add("wea");   //5
+        vf.add("weaS");  //6
+        vf.add("weaN");  //7
+        vf.add("weaD");  //8
+        vf.add("weaBo"); //9
+        vf.add("OR");    //10
+        vf.add("mod");   //11
+        vf.add("AND");   //12
+        vf.add("return");//13
+        vf.add("+");     //14
+        vf.add("-");     //15
+        vf.add("*");     //16
+        vf.add("/");     //17
+        vf.add("^");     //18
+        vf.add("=");     //19
+        vf.add(">");     //20
+        vf.add("<");     //21
+        vf.add("¡");     //22
+        vf.add("(");     //23
+        vf.add(")");     //24
+        vf.add(",");     //25
+        vf.add("¡=");    //26
+        vf.add("++");    //27
+        vf.add("--");    //28
+        vf.add("=>");    //29
+        vf.add("<=");    //30
+        vf.add("===");   //31
+        vf.add("    ");
     }
     
     public String exRegular(String er){
-        if(variablesDefinidas.contains(er))
+        if(vf.contains(er))
             return er;
         else
             return "1 Error";
@@ -76,8 +77,8 @@ public class ExpresionesRegulares {
         }
     }
 
-    public ArrayList<String> getVariablesDefinidas() {
-        return variablesDefinidas;
+    public String getVf(int n) {
+        return vf.get(n);
     }
     
     public static void main(String[] args) {
