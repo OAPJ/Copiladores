@@ -23,6 +23,7 @@ import java.util.ArrayList;
  */
 public class ExpresionesRegulares {
     private ArrayList<String> vf;
+    private ArrayList<String> va;
     
     public ExpresionesRegulares(){
         vf = new ArrayList<>();
@@ -48,24 +49,28 @@ public class ExpresionesRegulares {
         vf.add("=");     //19
         vf.add(">");     //20
         vf.add("<");     //21
-        vf.add("¡");     //22
+        vf.add("~");     //22
         vf.add("(");     //23
         vf.add(")");     //24
         vf.add(",");     //25
-        vf.add("¡=");    //26
+        vf.add("~=");    //26
         vf.add("++");    //27
         vf.add("--");    //28
         vf.add("=>");    //29
         vf.add("<=");    //30
         vf.add("===");   //31
-        vf.add("    ");
+        vf.add("fun");   //32
     }
     
     public String exRegular(String er){
         if(vf.contains(er))
             return er;
+        else if(er.length()>1 && ((er.charAt(0) > 64 && er.charAt(0) < 91) || (er.charAt(0) > 96 && er.charAt(0) < 123)))
+            return "ident"+er;
+        else if ((er.charAt(0) > 64 && er.charAt(0) < 91) || (er.charAt(0) > 96 && er.charAt(0) < 123))
+            return "ident"+er;
         else
-            return "1 Error";
+            return "1 Error " + er;
     }
     
     public String validarNumero(String er){
@@ -83,7 +88,7 @@ public class ExpresionesRegulares {
     
     public static void main(String[] args) {
         ExpresionesRegulares e = new ExpresionesRegulares();
-        System.out.println(e.validarNumero("4."));
+        System.out.println(e.exRegular("~"));
         
     }
 }

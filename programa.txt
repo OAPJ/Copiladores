@@ -1,45 +1,13 @@
-FactorialDeUnPrimo 
-	
-	esPrimo 
-		confirmar=1
-		modulo= posiblePrimo mod 2
-		if(modulo===0 AND posiblePrimo ¡= 2)
-			confirmar=0;
-			aux= 0
-		else
-			aux= posiblePrimo
-		end if
-			aux--
-		while(aux>2)
-			modulo=posiblePrimo mod aux
-			if(modulo===0)
-				confirmar=0
-			end if
-			aux--
-		end while
-	end esPrimo
-	
-	factorial
-		contFac= primoN		
-		resultado=1
-		while(contFac>0)
-			resultado= resultado* contFac
-			contFac--
-		end while
-	end factorial
+Suma
+	x = 3
+end Suma
 
-	weaBo confirmar
-	meaN modulo, posiblePrimo=1, aux,primoN, contFac, resultado, objetivo=0
-	wea cebo
-	while(objetivo<11)
-		cebo = esPrimo()
-		if(confirmar==1)
-			objetivo++
-		else
-			poiblePrimo++
-		end if
-	end while
-	primoN= posiblePrimo
-	cebo = factorial()
+-----------------------------------------
+Suma
+	fun AUX
+		x ( weaN y )
+	end AUX
+	we = r
+end Suma
 
-end FactorialDeUnPrimo
+----------------------------------------

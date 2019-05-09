@@ -31,6 +31,8 @@ public class Errores {
         error.add("Error Falta algun signo");       //12
         error.add("Error Falta una comparación");   //13
         error.add("Error Falta un AND ó OR");       //14
+        error.add("Error Falta fun");   //15
+        error.add("Error Falta un ===, ~, ~=, <, <=, >, => o (");//16
     }
     
     public String getError(int a){

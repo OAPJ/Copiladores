@@ -25,7 +25,7 @@ import java.io.IOException;
 public class leer {
 
     private int i = 0;
-    public String msj = "";
+    private String msj = "";
     public ExpresionesRegulares er;
 
     public leer() {
@@ -64,19 +64,81 @@ public class leer {
     public String formarVariable() {
         //([a-z] | [A-Z]) ([a-z] | [A-Z] | [0-9])* 
         char x = caracter();
-        if (x == '\n' || x == ' ') {
+        if (x == '\n' || x == ' ' || x==32)
             x = caracter();
-        }
         if ((x > 64 && x < 91) || (x > 96 && x < 123)) //El caracter es una letra
-        {
-            return "ident" + formarCadena(x);
-        } else if ((x > 47 && x < 58)){ //El caracter es un numero
+            //return "ident" + formarCadena(x);
+            return er.exRegular(formarCadena(x));
+        else if ((x > 47 && x < 58)) //El caracter es un numero
             return "num" + formarNumero(x);
-        } else if (x == ' ') {
+        else if (x == ' ')
             return "";
-        } else {
-            return x + " " + er.exRegular("" + x);
+        else if(x == '+')
+            return er.exRegular(formarSuma(x));
+        else if(x == '-')
+            return er.exRegular(formarResta(x));
+        else if(x == '~')
+            return er.exRegular(formarNegacion(x));
+        else if(x == '<')
+            return er.exRegular(formarNegacion(x));
+        else if(x == '=')
+            return er.exRegular(formarIgual(x));
+        else
+            return er.exRegular(""+x);
+            //return x + " " + er.exRegular("" + x);
+    }
+    
+    private String formarSuma(char x){
+        String cadena = "" + x;
+        x = caracter();
+        if(x == '+') cadena += x;
+        else{
+            i--;
+            return cadena;
         }
+        return cadena;
+    }
+    
+    private String formarResta(char x){
+        String cadena = "" + x;
+        x = caracter();
+        if(x == '-') cadena += x;
+        else{
+            i--;
+            return cadena;
+        }
+        return cadena;
+    }
+    
+    private String formarNegacion(char x){
+        String cadena = "" + x;
+        x = caracter();
+        if(x == '=') cadena += x;
+        else{
+            i--;
+            return cadena;
+        }
+        return cadena;
+    }
+    
+    private String formarIgual(char x){
+        String cadena = "" + x;
+        x = caracter();
+        if(x == '>') cadena += x;
+        else if(x == '='){
+            cadena += x;
+            x = caracter();
+            if(x == '=') cadena += x;
+            else{
+                i--;
+                return cadena;
+            }
+        }
+        else{
+            i--;
+            return cadena;
+        }
+        return cadena;
     }
 
     private String formarCadena(char x) {
@@ -121,6 +183,11 @@ public class leer {
         }
         return numero;
     }
+    
+    private String formarSuam(){
+        
+        return "";
+    }
 
     /**
      * @return the i
@@ -145,9 +212,9 @@ public class leer {
         System.out.println(l.formarVariable());
         System.out.println(l.formarVariable());
         System.out.println(l.formarVariable());
-//        System.out.println(l.formarVariable());
-//        System.out.println(l.formarVariable());
-//        System.out.println(l.formarVariable());
+        System.out.println(l.formarVariable());
+        System.out.println(l.formarVariable());
+        System.out.println(l.formarVariable());
     }
 
 }
