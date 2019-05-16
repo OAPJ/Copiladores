@@ -11,3 +11,33 @@ Suma
 end Suma
 
 ----------------------------------------
+Suma
+	fun funcion
+		if(x === 7 )
+		end if
+	end funcion
+	r = 0;
+end Suma
+
+------------------------------------------
+Suma
+	fun AUX
+		weaN x = hola
+		x = 7
+		if (x === 7 )
+			x = 0
+		end if
+	end AUX
+	r = 8;
+end Suma
+-----------------
+Suma78
+	fun funcion
+		weaS m = 20 , nel = 0
+		while( m > 0 AND nel <= 20 )
+		end while
+	end funcion
+
+	weaBo r = 0
+	prop = 0
+end Suma78

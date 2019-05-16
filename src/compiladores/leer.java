@@ -64,7 +64,7 @@ public class leer {
     public String formarVariable() {
         //([a-z] | [A-Z]) ([a-z] | [A-Z] | [0-9])* 
         char x = caracter();
-        if (x == '\n' || x == ' ' || x==32)
+        while (x == '\n' || x == ' ')
             x = caracter();
         if ((x > 64 && x < 91) || (x > 96 && x < 123)) //El caracter es una letra
             //return "ident" + formarCadena(x);

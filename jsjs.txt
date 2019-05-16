@@ -1,8 +1,13 @@
-Suma
-	fun AUX
-		weaN x = hola
-		x = 7
-		if (x === 7)
-			x = 0
-		end if
-end Suma
+Suma78
+	fun funcion
+		weaS m = 20 , nel = 0
+		while( m > 0 AND nel <= 20 )
+			while( m > 0 AND nel <= 20 )
+				m = m - 2
+			end while
+		end while
+	end funcion
+
+	weaBo r = 0
+	prop = 0
+end Suma78

@@ -6,7 +6,14 @@
 package compiladores;
 
 /**
- *
+ * Nombres: Miguel Angel Cervantes Garcia, Juan Antonio Ovalle Patiño Num
+ * Boletas: 2017670201, 2017670891 
+ * Fecha de Entrega: 16 / Mayo / 2019
+ * Evidencia: Compilaxion del lenguaje
+ * Nombre de la maestra: Karina Rodriguez Mejia
+ * Programa Academico: Ingenieria en Sistemas Computacionales
+ * Aprendizaje: Compiladores
+ * 
  * @author ovall
  */
 public class Programa {
@@ -161,7 +168,6 @@ public class Programa {
         String aux = a;
         if(a.contains(ident)){
             A8();
-            System.out.println(a);
             A11();
         }
         else if(a.equals(ep.getVf(1))){
@@ -174,7 +180,8 @@ public class Programa {
                     a2 = leer.formarVariable();
                     if(a2.equals(ep.getVf(0))){
                         a2 = leer.formarVariable();
-                        if(a2.equals(aux)) A11();
+                        if(a2.equals(aux))
+                            A11();
                         else System.err.println("PRO "+er.getError(3));
                     }
                     else System.err.println("PRO "+er.getError(1));
@@ -297,8 +304,8 @@ public class Programa {
                 if(a.equals(ep.getVf(24))){}
                 else System.err.println("A17_1 "+er.getError(7));
             }
-            else if (a.equals(ep.getVf(20)) || a.equals(ep.getVf(21)) || a.equals(ep.getVf(22)) 
-                        || a.equals(ep.getVf(26)) || a.equals(ep.getVf(29)) || a.equals(ep.getVf(30)) || a.equals(ep.getVf(31))){
+            else if (a.equals(ep.getVf(14)) || a.equals(ep.getVf(15)) || a.equals(ep.getVf(16)) 
+                        || a.equals(ep.getVf(17)) || a.equals(ep.getVf(18)) || a.equals(ep.getVf(11))){
                 leer.setI(i);
                 A18_1();
                 Expresion();
@@ -321,9 +328,9 @@ public class Programa {
     
     private void A18_1(){
         a= leer.formarVariable();
-        if(!a.equals(ep.getVf(11)) || !a.equals(ep.getVf(14)) || !a.equals(ep.getVf(15)) || !a.equals(ep.getVf(16))
-                || !a.equals(ep.getVf(17)) || !a.equals(ep.getVf(18)))
-            System.err.println("A18_1"+er.getError(12));
+        if(!a.equals(ep.getVf(11)) && !a.equals(ep.getVf(14)) && !a.equals(ep.getVf(15)) && !a.equals(ep.getVf(16))
+                && !a.equals(ep.getVf(17)) && !a.equals(ep.getVf(18)))
+            System.err.println("A18_1 "+er.getError(12));
     }
     
     private void Parametro(){
@@ -359,7 +366,6 @@ public class Programa {
     private void A23(){
         i = leer.getI();
         a = leer.formarVariable();
-        if (a.equals(" ")) a = leer.formarVariable();
         if(!a.equals(ep.getVf(24))){
             leer.setI(i);
             A22();
@@ -388,6 +394,7 @@ public class Programa {
     }
     
     private void A22(){
+        a = leer.formarVariable();
         if(!a.contains(ep.getVf(10)) && !a.contains(ep.getVf(12)))
             System.err.println("A22 "+er.getError(14));
             
