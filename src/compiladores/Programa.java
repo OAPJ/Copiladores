@@ -5,11 +5,17 @@
  */
 package compiladores;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Nombres: Miguel Angel Cervantes Garcia, Juan Antonio Ovalle Patiño Num
  * Boletas: 2017670201, 2017670891 
  * Fecha de Entrega: 16 / Mayo / 2019
- * Evidencia: Compilaxion del lenguaje
+ *                   06 / Juanio/ 2019
+ * Evidencia: Compilacion del lenguaje
+ *            Semantico
  * Nombre de la maestra: Karina Rodriguez Mejia
  * Programa Academico: Ingenieria en Sistemas Computacionales
  * Aprendizaje: Compiladores
@@ -23,14 +29,29 @@ public class Programa {
     private int i;
     private String ident, num;
     private String a, a2;
-    //Si hay un epsilon comparar primero los follows
+    private Map<String, ArrayList<String>> tipoVariables;
+    private ArrayList<String> variables;
+    private int variableTipo;
+    private boolean error;
+    private String auxExpresion, tipo;
     
     public Programa(){
+        variableTipo = 0;
         leer = new leer();
         er = new Errores();
         ep = new ExpresionesRegulares();
         ident = "ident";
         num = "num";
+        error = false;
+        variables = new ArrayList<>();
+        tipoVariables = new HashMap<String, ArrayList<String> >();
+        tipoVariables.put(ep.getVf(5), new ArrayList<String>());
+        tipoVariables.put(ep.getVf(6), new ArrayList<String>());
+        tipoVariables.put(ep.getVf(7), new ArrayList<String>());
+        tipoVariables.put(ep.getVf(8), new ArrayList<String>());
+        tipoVariables.put(ep.getVf(9), new ArrayList<String>());
+        auxExpresion = "";
+        tipo = "";
         programa();
     }
 
@@ -43,7 +64,7 @@ public class Programa {
             a2 = leer.formarVariable();
             if(a2.equals(ep.getVf(0))){//end
                 a2 = leer.formarVariable();
-                if(a2.equals(aux)) System.out.println("Compilacion exitosa");
+                if(a2.equals(aux) && !error) System.out.println("Compilacion exitosa");
                 else System.err.println("Error al compilar");
             }
             else System.err.println("Prog "+er.getError(1));
@@ -129,7 +150,42 @@ public class Programa {
 
     private void A4() {
         a =  leer.formarVariable();
+        ArrayList<String> aux = new ArrayList<>();
         if(a.contains(ident)){
+            String aux2 = a.replace(ident, "");
+            if(variables.contains(aux2)) {
+                System.err.println("Variable ya ocupada");
+                error = true;
+            }
+            else
+            {
+                variables.add(aux2);
+                if(variableTipo == 1){
+                    aux = tipoVariables.get(ep.getVf(5));
+                    aux.add(aux2);
+                    tipoVariables.put(ep.getVf(5), aux);
+                }
+                else if(variableTipo == 2){
+                    aux = tipoVariables.get(ep.getVf(6));
+                    aux.add(aux2);
+                    tipoVariables.put(ep.getVf(6), aux);
+                }
+                else if(variableTipo == 3){
+                    aux = tipoVariables.get(ep.getVf(7));
+                    aux.add(aux2);
+                    tipoVariables.put(ep.getVf(7), aux);
+                }
+                else if(variableTipo == 4){
+                    aux = tipoVariables.get(ep.getVf(8));
+                    aux.add(aux2);
+                    tipoVariables.put(ep.getVf(8), aux);
+                }
+                else if(variableTipo == 5){
+                    aux = tipoVariables.get(ep.getVf(9));
+                    aux.add(aux2);
+                    tipoVariables.put(ep.getVf(9), aux);
+                }
+            }
             A5();
             A7();
         }
@@ -157,16 +213,53 @@ public class Programa {
         i = leer.getI();
         a = leer.formarVariable();
         if(!a.contains(ident) && !a.equals(ep.getVf(1)) && !a.equals(ep.getVf(2)))
-            if(a.equals(ep.getVf(25))) 
-                A4();
+            if(a.equals(ep.getVf(25))) A4();
             else System.err.println("A7 "+er.getError(6));
         else leer.setI(i);
     }
     
     private void Proposicion(){
         a = leer.formarVariable();
-        String aux = a;
+        String aux = a, aux2;
         if(a.contains(ident)){
+            //System.out.println("Pro "+a);
+            aux2 = a.replace(ident, "");
+            if(!variables.contains(aux2)){
+                System.err.println("PRO Varable no definida: "+aux2);
+                error = true;
+            }
+            //Verifar que tipo es
+            boolean var = false;
+            if(!tipoVariables.get(ep.getVf(5)).isEmpty()){
+                if(tipoVariables.get(ep.getVf(5)).contains(aux2)){
+                    tipo = ep.getVf(5);
+                    var = true;
+                }
+            }
+            if(!tipoVariables.get(ep.getVf(6)).isEmpty()){
+                if(tipoVariables.get(ep.getVf(6)).contains(aux2)){
+                    tipo = ep.getVf(6);
+                    var = true;
+                }
+            }
+            if(!tipoVariables.get(ep.getVf(7)).isEmpty()){
+                if(tipoVariables.get(ep.getVf(7)).contains(aux2)){
+                    tipo = ep.getVf(7);
+                    var = true;
+                }
+            }
+            if(!tipoVariables.get(ep.getVf(8)).isEmpty()){
+                if(tipoVariables.get(ep.getVf(8)).contains(aux2)){
+                    tipo = ep.getVf(8);
+                    var = true;
+                }
+            }
+            if(!tipoVariables.get(ep.getVf(9)).isEmpty()){
+                if(tipoVariables.get(ep.getVf(5)).contains(aux2)){
+                    tipo = ep.getVf(9);
+                    var = true;
+                }
+            }
             A8();
             A11();
         }
@@ -216,7 +309,9 @@ public class Programa {
     
     private void A8(){ 
         a = leer.formarVariable();
-        if(a.equals(ep.getVf(19))) Expresion();
+        if(a.equals(ep.getVf(19))){
+            Expresion();
+        }
         else if(a.equals(ep.getVf(23))){
             A10();
             a = leer.formarVariable();
@@ -282,15 +377,52 @@ public class Programa {
     
     private void Tipo(){
         a = leer.formarVariable();
-        if(!a.equals(ep.getVf(5)) && !a.equals(ep.getVf(6)) && !a.equals(ep.getVf(7))
-                && !a.equals(ep.getVf(8)) && !a.equals(ep.getVf(9)))
-            System.err.println("TI "+er.getError(11));
+        if(a.equals(ep.getVf(5))){
+            tipoVariables.put(ep.getVf(5), tipoVariables.get(ep.getVf(5)));
+            variableTipo = 1;
+        }
+        else if(a.equals(ep.getVf(6))){
+            tipoVariables.put(ep.getVf(6), tipoVariables.get(ep.getVf(6)));
+            variableTipo = 2;
+        }
+        else if(a.equals(ep.getVf(7))){
+            tipoVariables.put(ep.getVf(7), tipoVariables.get(ep.getVf(7)));
+            variableTipo = 3;
+        }
+        else if(a.equals(ep.getVf(8))){
+            tipoVariables.put(ep.getVf(8), tipoVariables.get(ep.getVf(8)));
+            variableTipo = 4;
+        }
+        else if(a.equals(ep.getVf(9))){
+            tipoVariables.put(ep.getVf(9), tipoVariables.get(ep.getVf(9)));
+            variableTipo = 5;
+        }
+        else System.err.println("TI "+er.getError(11));
     }
     
     private void Expresion(){
         a = leer.formarVariable();
-        if(a.contains(ident)) A17_1();
-        else if(a.contains(num)) A17();
+        String aux = "";
+        if(a.contains(ident)){
+            aux = a.replace(ident, "");
+            if(!variables.contains(aux)){
+                System.err.println("Variable no declarada "+aux);
+                error = true;
+            }
+            if(!tipoVariables.get(tipo).contains(aux)){
+                System.err.println("Tipo de varibale no coincide "+aux);
+                error = true;
+            }
+            A17_1();
+        }
+        else if(a.contains(num)){
+            aux = a.replace(num, "");
+            if(!tipo.equals(ep.getVf(7)) && !tipo.equals(ep.getVf(8))){
+                System.out.println("Tipo de variable no coincide " + aux);
+                error =  true;
+            }
+            A17();
+        }
         else System.err.println("EXP "+er.getError(2));
     }
     
@@ -358,7 +490,13 @@ public class Programa {
     
     private void A16(){
         a = leer.formarVariable();
-        if(a.contains(ident)){}
+        if(a.contains(ident)){
+            String aux = a.replace(ident, "");
+            if(!variables.contains(aux)){
+                System.err.println("Varaible no definida "+aux);
+                error = true;
+            }
+        }
         else if(a.contains(num)){}
         else System.err.println("A16 "+er.getError(2));
     }
